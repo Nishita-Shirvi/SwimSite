@@ -1,0 +1,93 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   Design tokens.
+
+   The palette is built around water: a deep marine navy for authority, a bright
+   aqua for interaction, and a warm sand for the "hard water" contrast moments.
+   Neutrals lean slightly cool so they sit comfortably with the blues.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-marine-50: #eef7fb;
+  --color-marine-100: #d5ebf5;
+  --color-marine-200: #a9d6ea;
+  --color-marine-300: #72badb;
+  --color-marine-400: #3f9ac7;
+  --color-marine-500: #227dad;
+  --color-marine-600: #186492;
+  --color-marine-700: #165176;
+  --color-marine-800: #123f5c;
+  --color-marine-900: #0d2c42;
+  --color-marine-950: #071a28;
+
+  --color-aqua-300: #6ee7d5;
+  --color-aqua-400: #2dd4bd;
+  --color-aqua-500: #14b8a2;
+  --color-aqua-600: #0d9485;
+  --color-aqua-700: #0b756a;
+
+  --color-sand-100: #f7f1e6;
+  --color-sand-300: #e4d3b4;
+  --color-sand-500: #c9a970;
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: 'Fraunces', ui-serif, Georgia, 'Times New Roman', serif;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Keep anchor targets clear of the sticky header. */
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply bg-white font-sans text-marine-900 antialiased;
+  }
+
+  /* Keyboard focus only, so the ring doesn't flash on every mouse click. */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-aqua-500;
+  }
+
+  ::selection {
+    @apply bg-aqua-300 text-marine-950;
+  }
+}
+
+@layer components {
+  /* Shared page gutter, used by nearly every section wrapper. */
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.18em] text-aqua-600;
+  }
+}
+
+@layer utilities {
+  /* Entrance animation driven by IntersectionObserver — see useReveal(). */
+  .reveal {
+    opacity: 0;
+    transform: translateY(1.25rem);
+    transition:
+      opacity 0.7s var(--ease-out-soft),
+      transform 0.7s var(--ease-out-soft);
+  }
+
+  .reveal-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}
