@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
+import { BackgroundVideo } from '@/components/BackgroundVideo'
 import { ButtonLink } from '@/components/Button'
 import { CtaBanner } from '@/components/CtaBanner'
+import { VideoShowcase } from '@/components/VideoShowcase'
 import { ProductCard } from '@/components/ProductCard'
 import { Reveal } from '@/components/Reveal'
 import { Section } from '@/components/Section'
@@ -47,9 +49,9 @@ export default function Home() {
     <>
       {/* ---------------------------------------------------------------- Hero */}
       <section className="relative overflow-hidden bg-marine-950 text-white">
-        <img
-          src="/img/brand/hero.webp"
-          alt=""
+        <BackgroundVideo
+          src="/video/hero.mp4"
+          poster="/img/brand/hero.webp"
           className="absolute inset-0 size-full object-cover opacity-25"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-marine-950 via-marine-950/95 to-marine-900/70" />
@@ -157,6 +159,8 @@ export default function Home() {
           ))}
         </div>
       </Section>
+
+      <VideoShowcase />
 
       {/* --------------------------------------------------------- How it works */}
       <Section

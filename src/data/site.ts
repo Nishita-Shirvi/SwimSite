@@ -52,6 +52,8 @@ export const strengths = [
 export const contact = {
   tollFree: '1800 270 3701',
   mobile: '+91 97555 90240',
+  /** Digits only, with country code — wa.me rejects spaces and '+'. */
+  whatsapp: '919755590240',
   // NEEDS-CONFIRM: the source page masks this address behind Cloudflare.
   email: 'info@sofpour.com',
   // NEEDS-CONFIRM: not published on the source site.

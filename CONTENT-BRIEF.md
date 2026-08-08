@@ -89,6 +89,20 @@ requirements."
 
 Logo: `/wp-content/uploads/2024/07/logo-sofpour.png`
 
+**Videos** — the source runs five Elementor background clips (URLs live in each section's
+`data-settings`, not on the `<video>` tag). All five pulled into `public/video/`:
+
+| Source file | Local | Size | Used by |
+|---|---|---|---|
+| `857131-hd_1920_1080_24fps.mp4` | `hero.mp4` | 4.6 MB | Home hero backdrop |
+| `Water-Softener.mp4` | `softeners.mp4` | 3.1 MB | Showcase tab + softener range hero |
+| `Air-Source-Heat-Pump-Water-Heater-.mp4` | `heatpumps.mp4` | 3.2 MB | Showcase tab + range hero |
+| `Industrial-Water-Purification-.mp4` | `industrial.mp4` | 3.2 MB | Showcase tab + range hero |
+| `Pressure-Boosters-and-Hydro-Pneumatic-Systems.mp4` | `boosters.mp4` | 10.5 MB | Showcase tab + range hero |
+
+~25 MB total, none of it re-encoded (no ffmpeg on this machine). Worth compressing before
+launch — `boosters.mp4` especially.
+
 Product photography lives under `/wp-content/uploads/2024/07/` and `/2024/10/` — notable:
 `Premium-Series-Softener-1025x1536.jpg`, `Sofpour-SPA-1354.png`, `Sofpour-SPA-1465.png`,
 `Sofpour-SPA-1665-1536x1024.png`, `pic1-scaled.jpg`, `pic2-scaled.jpg`, `pic3-scaled.jpg`,

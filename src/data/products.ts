@@ -26,6 +26,8 @@ export type Range = {
   segment: 'residential' | 'commercial' | 'both'
   heroImage: string
   heroImageAlt: string
+  /** Looping background clip, carried over from the source site. */
+  video: string
   models: Model[]
   /** True when the source site publishes no detailed spec tables. */
   specsPending: boolean
@@ -71,6 +73,7 @@ export const ranges: Range[] = [
     segment: 'residential',
     heroImage: '/img/softeners/aurize-premium.webp',
     heroImageAlt: 'Sofpour premium series water softener installed against a tiled wall',
+    video: '/video/softeners.mp4',
     specsPending: true,
     models: [
       {
@@ -133,6 +136,7 @@ export const ranges: Range[] = [
     segment: 'both',
     heroImage: '/img/heatpumps/shp-300.webp',
     heroImageAlt: 'Sofpour air source heat pump water heater with storage tank',
+    video: '/video/heatpumps.mp4',
     specsPending: true,
     models: [
       {
@@ -195,6 +199,7 @@ export const ranges: Range[] = [
     // NEEDS-ASSET: the source RO plant photo 404s. Falling back to a softener shot.
     heroImage: '/img/softeners/spa-1354-detail.webp',
     heroImageAlt: 'Sofpour water treatment installation',
+    video: '/video/industrial.mp4',
     specsPending: true,
     models: [
       {
@@ -223,6 +228,7 @@ export const ranges: Range[] = [
     segment: 'both',
     heroImage: '/img/boosters/pss.webp',
     heroImageAlt: 'Sofpour PSS series domestic pressure booster pump',
+    video: '/video/boosters.mp4',
     specsPending: true,
     models: [
       {

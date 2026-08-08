@@ -40,6 +40,7 @@ export default function RangeDetail() {
         ]}
         image={range.heroImage}
         imageAlt={range.heroImageAlt}
+        video={range.video}
       >
         <ButtonLink to="/contact" variant="secondary" size="lg">
           Get a sizing recommendation

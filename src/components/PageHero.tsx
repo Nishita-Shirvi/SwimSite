@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { BackgroundVideo } from './BackgroundVideo'
 
 type Crumb = { label: string; to?: string }
 
@@ -10,21 +11,31 @@ type Props = {
   crumbs?: Crumb[]
   image?: string
   imageAlt?: string
+  /** When given, the backdrop plays this clip with `image` as its poster. */
+  video?: string
   children?: ReactNode
 }
 
 /** Compact hero used by every page except the home page. */
-export function PageHero({ eyebrow, title, lead, crumbs, image, imageAlt, children }: Props) {
+export function PageHero({ eyebrow, title, lead, crumbs, image, imageAlt, video, children }: Props) {
   return (
     <section className="relative overflow-hidden bg-marine-950 text-white">
       {image && (
         <>
-          <img
-            src={image}
-            alt={imageAlt ?? ''}
-            className="absolute inset-0 size-full object-cover opacity-20"
-            loading="eager"
-          />
+          {video ? (
+            <BackgroundVideo
+              src={video}
+              poster={image}
+              className="absolute inset-0 size-full object-cover opacity-20"
+            />
+          ) : (
+            <img
+              src={image}
+              alt={imageAlt ?? ''}
+              className="absolute inset-0 size-full object-cover opacity-20"
+              loading="eager"
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-r from-marine-950 via-marine-950/90 to-marine-950/50" />
         </>
       )}

@@ -15,7 +15,19 @@
       "Bash(node -e ' *)",
       "Bash(npm run *)",
       "Bash(curl -sf http://localhost:5173/ -o /dev/null)",
-      "Bash(curl -s http://localhost:5173/)"
+      "Bash(curl -s http://localhost:5173/)",
+      "Bash(curl -sL --max-time 30 https://sofpour.com -o /tmp/sofpour.html)",
+      "Read(//tmp/**)",
+      "Bash(ffmpeg -version)",
+      "Read(//c/Users/NishitaShirvi/AppData/Local/**)",
+      "Bash(npx --no-install playwright --version)",
+      "Bash(mkdir -p .shots)",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --no-sandbox --hide-scrollbars --autoplay-policy=no-user-gesture-required --window-size=1440,1200 --virtual-time-budget=12000 --screenshot=\".shots/home-hero.png\" \"http://localhost:5173/\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --no-sandbox --hide-scrollbars --autoplay-policy=no-user-gesture-required --window-size=1440,1200 --virtual-time-budget=12000 \"--screenshot=C:\\\\Users\\\\NishitaShirvi\\\\Desktop\\\\swimSite\\\\.shots\\\\home-hero.png\" \"http://localhost:5173/\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --no-sandbox --hide-scrollbars --autoplay-policy=no-user-gesture-required --window-size=1440,4000 --virtual-time-budget=15000 \"--screenshot=C:\\\\Users\\\\NishitaShirvi\\\\Desktop\\\\swimSite\\\\.shots\\\\home-tall.png\" \"http://localhost:5173/\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --no-sandbox --hide-scrollbars --autoplay-policy=no-user-gesture-required --window-size=1440,900 --virtual-time-budget=15000 \"--screenshot=C:\\\\Users\\\\NishitaShirvi\\\\Desktop\\\\swimSite\\\\.shots\\\\range-hero.png\" \"http://localhost:5173/products/heat-pump-water-heaters\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --no-sandbox --hide-scrollbars --window-size=1440,1500 --virtual-time-budget=10000 \"--screenshot=C:\\\\Users\\\\NishitaShirvi\\\\Desktop\\\\swimSite\\\\.shots\\\\contact.png\" \"http://localhost:5173/contact\")",
+      "Bash(node -e \"require\\('sharp'\\)\\('.shots/contact.png'\\).extract\\({left:100,top:700,width:800,height:800}\\).toFile\\('.shots/contact-form.png'\\).then\\(\\(\\)=>console.log\\('ok'\\)\\)\")"
     ]
   }
 }

@@ -56,14 +56,40 @@ export default function ContactPage() {
     return next
   }
 
-  const onSubmit = (e: React.FormEvent) => {
+  /**
+   * There is no backend. The enquiry is handed to whichever app the visitor
+   * already has — WhatsApp or their mail client — with every field prefilled,
+   * so nothing is silently swallowed by a form that goes nowhere.
+   */
+  const compose = (v: Fields) =>
+    [
+      `Name: ${v.name}`,
+      `Phone: ${v.phone}`,
+      v.email && `Email: ${v.email}`,
+      v.location && `Location: ${v.location}`,
+      v.interest && `Looking for: ${v.interest}`,
+      '',
+      v.message,
+    ]
+      .filter(Boolean)
+      .join('\n')
+
+  const submitVia = (channel: 'whatsapp' | 'email') => (e: React.FormEvent) => {
     e.preventDefault()
     const next = validate()
     setErrors(next)
     if (Object.keys(next).length > 0) return
 
-    // NOTE: no backend is wired up yet. Point this at your form handler
-    // (Formspree, a serverless function, or the CRM endpoint) before launch.
+    const body = encodeURIComponent(compose(values))
+
+    if (channel === 'whatsapp') {
+      window.open(`https://wa.me/${contact.whatsapp}?text=${body}`, '_blank', 'noopener,noreferrer')
+    } else {
+      const subject = encodeURIComponent(`Enquiry from ${values.name.trim()}`)
+      // mailto must navigate the current tab — window.open leaves a blank one.
+      window.location.href = `mailto:${contact.email}?subject=${subject}&body=${body}`
+    }
+
     setSent(true)
   }
 
@@ -90,11 +116,12 @@ export default function ContactPage() {
                     <MailIcon className="size-7" />
                   </div>
                   <h2 className="mt-6 font-display text-2xl tracking-tight text-marine-900">
-                    Thanks — we have your details
+                    Your enquiry is ready to send
                   </h2>
                   <p className="mt-3 text-marine-700">
-                    Someone from the team will be in touch shortly. If it is urgent, the toll-free
-                    line is the fastest route.
+                    We have opened WhatsApp — or your mail app — with everything filled in. Press
+                    send there and it reaches us. If nothing opened, the toll-free line below is the
+                    fastest route.
                   </p>
                   <Button
                     variant="ghost"
@@ -108,7 +135,7 @@ export default function ContactPage() {
                   </Button>
                 </div>
               ) : (
-                <form onSubmit={onSubmit} noValidate>
+                <form onSubmit={submitVia('whatsapp')} noValidate>
                   <h2 className="font-display text-2xl tracking-tight text-marine-900">
                     Request a callback
                   </h2>
@@ -217,9 +244,24 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <Button type="submit" variant="secondary" size="lg" className="mt-8 w-full sm:w-auto">
-                    Send enquiry
-                  </Button>
+                  <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <Button type="submit" variant="secondary" size="lg" className="w-full sm:w-auto">
+                      Send on WhatsApp
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="lg"
+                      className="w-full sm:w-auto"
+                      onClick={submitVia('email')}
+                    >
+                      Send by email
+                    </Button>
+                  </div>
+
+                  <p className="mt-4 text-sm text-marine-500">
+                    Either option opens with your details already filled in — you just press send.
+                  </p>
                 </form>
               )}
             </div>
